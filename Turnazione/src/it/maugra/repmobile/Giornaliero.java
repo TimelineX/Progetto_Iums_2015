@@ -57,7 +57,7 @@ public class Giornaliero extends Fragment implements OnClickListener{
 	}
 	
 	private void setDateTimeField() {
-		Data.setOnClickListener(rootView);
+	//	Data.setOnClickListener(rootView);
 	}
 
 	public void onClick(View v) {
