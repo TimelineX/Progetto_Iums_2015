@@ -35,11 +35,17 @@ public class My_MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
 		
-        if (savedInstanceState == null) {
+        /*if (savedInstanceState == null) {
             getFragmentManager().beginTransaction()
                     .add(R.id.container, new Main_Fragment())
                     .commit();
-        }
+        }*/
+        
+        if (savedInstanceState == null) {
+        getFragmentManager().beginTransaction()
+                .add(R.id.container, new Giornaliero())
+                .commit();
+    }
     }
 	
     
