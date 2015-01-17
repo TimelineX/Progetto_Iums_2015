@@ -20,7 +20,9 @@ import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebView.FindListener;
 import android.widget.GridView;
+import android.widget.TabHost;
 import android.widget.ViewFlipper;
 
 /**
@@ -29,7 +31,8 @@ import android.widget.ViewFlipper;
 public  class Main_Fragment extends Fragment {
 	private GridView gridView;
 	private GridViewAdapter customGridAdapter;
-
+	private TabHost mTabHost;
+	
 	private static final int SWIPE_MIN_DISTANCE = 120;
 	private static final int SWIPE_THRESHOLD_VELOCITY = 200;
 	private ViewFlipper mViewFlipper;	
@@ -53,11 +56,22 @@ public  class Main_Fragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		View rootView = inflater.inflate(R.layout.princ_fragment, container,
+		
+		
+		View rootView = inflater.inflate(R.layout.princ_fragment_2, container,
 				false);
 		gridView = (GridView) rootView.findViewById(R.id.gridView);
 		customGridAdapter = new GridViewAdapter(this.getActivity(), R.layout.row_grid, getData());
 		gridView.setAdapter(customGridAdapter);
+		
+		//mTabHost = rootView.getTabHost();
+		mTabHost = (TabHost)rootView.findViewById(R.id.tabhost);
+		mTabHost.setup();
+		mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("Turnario").setContent(R.id.gridView));
+		mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("CarSharing").setContent(R.id.textview2));
+		mTabHost.addTab(mTabHost.newTabSpec("tab_test3").setIndicator("Altro").setContent(R.id.textview3));
+		mTabHost.setCurrentTab(0);
+		
 		
 		mContext = this.getActivity();
 		mViewFlipper = (ViewFlipper) rootView.findViewById(R.id.ViewFlipper01);
@@ -68,6 +82,13 @@ public  class Main_Fragment extends Fragment {
 				return true;
 			}
 		});
+		
+		/*tabHost = (TabHost) rootView.findViewById(R.id.tabhost);
+		tabHost.setup();
+		tabHost.addTab(tabHost.newTabSpec("Alice").setContent(R.id.gridView)
+		.setIndicator("Turnario"));
+		tabHost.addTab(tabHost.newTabSpec("Marta").setContent(R.id.gridView)
+		.setIndicator("CarSharing"));*/
 
 		return rootView;
 	}

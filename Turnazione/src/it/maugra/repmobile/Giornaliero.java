@@ -24,7 +24,7 @@ import android.widget.ViewFlipper;
  * @author Mizio
  * Fragment : Giornaliero
  */
-public class Giornaliero extends Fragment implements OnClickListener{
+public class Giornaliero extends Fragment {
 	
 	 
 	//UI References
@@ -48,6 +48,13 @@ public class Giornaliero extends Fragment implements OnClickListener{
 		rootView = inflater.inflate(R.layout.giornaliero_fragment, container,
 				false);
 		Data = (TextView) rootView.findViewById(R.id.txtDate);
+		Data.setOnClickListener(new View.OnClickListener() {
+	        @Override
+	        public void onClick(View v) {
+	        	DatePickerDialog.show();;
+	        }
+
+	    });
 		return rootView;
 	}
 	
@@ -60,12 +67,8 @@ public class Giornaliero extends Fragment implements OnClickListener{
 	//	Data.setOnClickListener(rootView);
 	}
 
-	public void onClick(View v) {
-		// TODO Auto-generated method stub
-		if (v==Data) {
-			DatePickerDialog.show();
-		}
+	
 		
 	}
 	
-}
+
