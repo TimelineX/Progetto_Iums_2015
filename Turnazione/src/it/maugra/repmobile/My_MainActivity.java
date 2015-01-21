@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 
 
+
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
@@ -13,10 +15,12 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -35,17 +39,22 @@ public class My_MainActivity extends Activity {
         setContentView(R.layout.activity_main);
         
 		
-        /*if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.container, new Main_Fragment())
-                    .commit();
-        }*/
-        
         if (savedInstanceState == null) {
+            getFragmentManager().beginTransaction()
+                    .add(R.id.frag1, new Top_Fragment())
+                    .commit();
+            getFragmentManager().beginTransaction()
+            .add(R.id.frag2, new DownFragment())
+            .commit();
+        }
+        
+       
+        
+       /*if (savedInstanceState == null) {
         getFragmentManager().beginTransaction()
                 .add(R.id.container, new Giornaliero())
                 .commit();
-    }
+    }*/
     }
 	
     
@@ -68,8 +77,10 @@ public class My_MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
-    
-    
+
+
+
+   
 
 
 

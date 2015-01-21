@@ -11,6 +11,7 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.LayoutInflater;
@@ -21,14 +22,19 @@ import android.view.ViewGroup;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.AnimationUtils;
 import android.webkit.WebView.FindListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.TabHost;
+import android.widget.Toast;
 import android.widget.ViewFlipper;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public  class Main_Fragment extends Fragment {
+	private final String TAG="MOBI";
 	private GridView gridView;
 	private GridViewAdapter customGridAdapter;
 	private TabHost mTabHost;
@@ -50,7 +56,7 @@ public  class Main_Fragment extends Fragment {
 	    public void onAttach(Activity activity) {  
 	        super.onAttach(activity);  
 	        My_MainActivity main=(My_MainActivity) activity;  
-	        My_MainActivity listener = main;  
+	       
 	    }  
 	 
 	@Override
@@ -60,14 +66,12 @@ public  class Main_Fragment extends Fragment {
 		
 		View rootView = inflater.inflate(R.layout.princ_fragment_2, container,
 				false);
-		gridView = (GridView) rootView.findViewById(R.id.gridView);
-		customGridAdapter = new GridViewAdapter(this.getActivity(), R.layout.row_grid, getData());
-		gridView.setAdapter(customGridAdapter);
+		
 		
 		//mTabHost = rootView.getTabHost();
 		mTabHost = (TabHost)rootView.findViewById(R.id.tabhost);
 		mTabHost.setup();
-		mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("Turnario").setContent(R.id.gridView));
+		mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("Turnario").setContent(R.id.gridView2));
 		mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("CarSharing").setContent(R.id.textview2));
 		mTabHost.addTab(mTabHost.newTabSpec("tab_test3").setIndicator("Altro").setContent(R.id.textview3));
 		mTabHost.setCurrentTab(0);
@@ -83,13 +87,25 @@ public  class Main_Fragment extends Fragment {
 			}
 		});
 		
-		/*tabHost = (TabHost) rootView.findViewById(R.id.tabhost);
-		tabHost.setup();
-		tabHost.addTab(tabHost.newTabSpec("Alice").setContent(R.id.gridView)
-		.setIndicator("Turnario"));
-		tabHost.addTab(tabHost.newTabSpec("Marta").setContent(R.id.gridView)
-		.setIndicator("CarSharing"));*/
+		gridView = (GridView) rootView.findViewById(R.id.gridView2);
+		customGridAdapter = new GridViewAdapter(mContext, R.layout.row_grid, getData());
+		gridView.setAdapter(customGridAdapter);
+		
+		gridView.setOnItemClickListener(new OnItemClickListener() {
+			
+			
+			public void onItemClick(AdapterView<?> parent, View v,
+					int position, long id) {
+				
+				Activity activity = getActivity();
 
+		        if (activity != null) {
+		        	Toast.makeText(getActivity(),"Text!",Toast.LENGTH_SHORT).show();
+					Log.v(TAG,"GRIDVIEW ITEM TOUCH");
+		        }
+				
+				}
+			});
 		return rootView;
 	}
 	
