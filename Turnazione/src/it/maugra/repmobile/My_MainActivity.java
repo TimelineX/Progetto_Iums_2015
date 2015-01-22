@@ -8,9 +8,14 @@ import java.util.ArrayList;
 
 
 
+
+
+
 import android.app.Activity;
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,15 +42,16 @@ public class My_MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-		
+        FragmentManager fm = getFragmentManager();
+        FragmentTransaction ft = fm.beginTransaction();
+        		
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction()
-                    .add(R.id.frag1, new Top_Fragment())
-                    .commit();
-            getFragmentManager().beginTransaction()
-            .add(R.id.frag2, new DownFragment())
-            .commit();
+            ft.add(R.id.frag1, new Top_Fragment());
+            ft.add(R.id.frag2, new DownFragment());
+            ft.addToBackStack("fragTramnsaction");
+            ft.commit();
+            
+            
         }
         
        
@@ -80,7 +86,6 @@ public class My_MainActivity extends Activity {
 
 
 
-   
 
 
 

@@ -4,10 +4,12 @@ import java.util.ArrayList;
 
 
 
+
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -18,7 +20,7 @@ import android.widget.TextView;
  * @author javatechig {@link http://javatechig.com}
  * 
  */
-public class GridViewAdapter extends ArrayAdapter<ImageItem> {
+public class GridViewAdapter extends ArrayAdapter<ImageItem>{
 	private Context context;
 	private int layoutResourceId;
 	private ArrayList<ImageItem> data = new ArrayList<ImageItem>();
@@ -57,4 +59,6 @@ public class GridViewAdapter extends ArrayAdapter<ImageItem> {
 		TextView imageTitle;
 		ImageView image;
 	}
+
+
 }
